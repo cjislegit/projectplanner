@@ -1,14 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import SignedinLinks from './SignedinLinks';
 import SignedOutLinks from './SignedOutLinks';
 
 const Navbar = () => {
   return (
-    <nav className='nav-wrapper grey darken-3'>
-      <div className='container'>
-        <Link to='/' className='brand-logo'>
+    <nav className="nav-wrapper grey darken-3">
+      <div className="container">
+        <Link to="/" className="brand-logo">
           Project Planner
         </Link>
         <SignedinLinks />
@@ -18,4 +19,8 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+const mapStateToProps = state => {
+  return;
+};
+
+export default connect()(Navbar);
