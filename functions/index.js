@@ -32,7 +32,8 @@ exports.projectCreated = functions.firestore
   });
 
 exports.userJoined = functions.auth.user().onCreate(user => {
-  return admin.firestore
+  return admin
+    .firestore()
     .collection('users')
     .doc(user.uid)
     .get()
@@ -40,7 +41,7 @@ exports.userJoined = functions.auth.user().onCreate(user => {
       const newUser = doc.data();
       const notification = {
         content: 'Joined',
-        user: `${newUser.firstName} ${newUser.LastName}`,
+        user: `${newUser.firstName} ${newUser.lastName}`,
         time: admin.firestore.FieldValue.serverTimestamp()
       };
       return createNotification(notification);
