@@ -3,6 +3,9 @@ import { isTemplateElement } from '@babel/types';
 import moment from 'moment';
 
 const Notifications = props => {
+  const spanStyle = {
+    color: '#26A59A'
+  };
   const { notifications } = props;
   return (
     <div className="section">
@@ -14,7 +17,7 @@ const Notifications = props => {
               notifications.map(notificaion => {
                 return (
                   <li key={notificaion.id}>
-                    <span className="pink-text">{notificaion.user}</span>
+                    <span style={spanStyle}>{notificaion.user}</span>
                     <span> {notificaion.content}</span>
                     <div class="grey-text note-date">
                       {moment(notificaion.time.toDate()).fromNow()}
