@@ -8,6 +8,13 @@ import moment from 'moment';
 const ProjectDetails = props => {
   const { project } = props;
   const { auth } = props;
+
+  const handleDelete = () => {
+    db.collection('projects')
+      .doc(project.createdAt)
+      .delete();
+  };
+
   if (!auth.uid) return <Redirect to="/signin" />;
 
   if (project) {
@@ -23,6 +30,12 @@ const ProjectDetails = props => {
               Posted by {project.authorFirstName} {project.authorLastName}
             </div>
             <div>{moment(project.createdAt.toDate()).calendar()}</div>
+            <button
+              className="btn z-depth-0 right center"
+              onClick={handleDelete}
+            >
+              Delete
+            </button>
           </div>
         </div>
       </div>
