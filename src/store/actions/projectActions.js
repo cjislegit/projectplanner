@@ -23,3 +23,14 @@ export const createProject = project => {
       });
   };
 };
+
+export const deleteProject = project => {
+  return (dispatch, getState, { getFirestore }) => {
+    const firestore = getFirestore();
+    console.log(firestore.collection('projects'));
+  };
+};
+
+//   db.collection('projects')
+//     .doc(project.createdAt)
+//     .delete();

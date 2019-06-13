@@ -3,17 +3,17 @@ import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { Redirect } from 'react-router-dom';
+import { deleteProject } from '../../store/actions/projectActions';
 import moment from 'moment';
 
 const ProjectDetails = props => {
   const { project } = props;
   const { auth } = props;
 
-  // const handleDelete = () => {
-  //   db.collection('projects')
-  //     .doc(project.createdAt)
-  //     .delete();
-  // };
+  const handleDelete = e => {
+    e.preventDefault();
+    props.deleteProject();
+  };
 
   if (!auth.uid) return <Redirect to="/signin" />;
 
@@ -32,7 +32,7 @@ const ProjectDetails = props => {
             <div>{moment(project.createdAt.toDate()).calendar()}</div>
             <button
               className="btn z-depth-0 right center"
-              //onClick={handleDelete}
+              onClick={handleDelete}
             >
               Delete
             </button>
@@ -59,7 +59,16 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    deleteProject: project => dispatch(deleteProject())
+  };
+};
+
 export default compose(
-  connect(mapStateToProps),
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
   firestoreConnect([{ collection: 'projects' }])
 )(ProjectDetails);
