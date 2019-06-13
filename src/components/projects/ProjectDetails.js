@@ -9,11 +9,11 @@ const ProjectDetails = props => {
   const { project } = props;
   const { auth } = props;
 
-  const handleDelete = () => {
-    db.collection('projects')
-      .doc(project.createdAt)
-      .delete();
-  };
+  // const handleDelete = () => {
+  //   db.collection('projects')
+  //     .doc(project.createdAt)
+  //     .delete();
+  // };
 
   if (!auth.uid) return <Redirect to="/signin" />;
 
@@ -32,7 +32,7 @@ const ProjectDetails = props => {
             <div>{moment(project.createdAt.toDate()).calendar()}</div>
             <button
               className="btn z-depth-0 right center"
-              onClick={handleDelete}
+              //onClick={handleDelete}
             >
               Delete
             </button>
