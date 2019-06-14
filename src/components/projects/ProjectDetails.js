@@ -14,6 +14,7 @@ const ProjectDetails = props => {
   const handleDelete = e => {
     e.preventDefault();
     props.deleteProject(match.params.id);
+    props.history.push('/');
   };
 
   if (!auth.uid) return <Redirect to="/signin" />;

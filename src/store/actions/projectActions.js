@@ -33,7 +33,3 @@ export const deleteProject = project => {
       .delete();
   };
 };
-
-//   db.collection('projects')
-//     .doc(project.createdAt)
-//     .delete();
