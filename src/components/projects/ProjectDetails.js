@@ -9,10 +9,11 @@ import moment from 'moment';
 const ProjectDetails = props => {
   const { project } = props;
   const { auth } = props;
+  const { match } = props;
 
   const handleDelete = e => {
     e.preventDefault();
-    props.deleteProject();
+    props.deleteProject(match.params.id);
   };
 
   if (!auth.uid) return <Redirect to="/signin" />;
@@ -61,7 +62,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    deleteProject: project => dispatch(deleteProject())
+    deleteProject: project => dispatch(deleteProject(project))
   };
 };
 
