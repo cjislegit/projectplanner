@@ -10,14 +10,15 @@ import { Redirect } from 'react-router-dom';
 class Dashboard extends Component {
   render() {
     const { projects, auth, notifications } = this.props;
-    if (!auth.uid) return <Redirect to="/signin" />;
+    console.log(auth);
+    if (!auth.uid) return <Redirect to='/signin' />;
     return (
-      <div className="container dashboard">
-        <div class="row">
-          <div className="col s12 m6">
-            <ProjectList projects={projects} />
+      <div className='container dashboard'>
+        <div class='row'>
+          <div className='col s12 m6'>
+            <ProjectList projects={projects} auth={auth} />
           </div>
-          <div className="col s12 m5 offset-m1">
+          <div className='col s12 m5 offset-m1'>
             <Notifications notifications={notifications} />
           </div>
         </div>
