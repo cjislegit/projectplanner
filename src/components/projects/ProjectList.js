@@ -9,7 +9,7 @@ const ProjectList = ({ projects, auth }) => {
       {projects &&
         projects.map(project => {
           //projects && checks to see if there is any projects before running the codes
-          if (auth.uid != project.authorId) return null;
+          if (auth.uid !== project.authorId) return null;
           return (
             <Link to={'/project/' + project.id}>
               <ProjectSummary project={project} key={project.id} />
